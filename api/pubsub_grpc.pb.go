@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -29,7 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PubSubClient interface {
 	Subscribe(ctx context.Context, in *SubscribeRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Event], error)
-	Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*Empty, error)
 }
 
 type pubSubClient struct {
@@ -59,9 +58,9 @@ func (c *pubSubClient) Subscribe(ctx context.Context, in *SubscribeRequest, opts
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type PubSub_SubscribeClient = grpc.ServerStreamingClient[Event]
 
-func (c *pubSubClient) Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *pubSubClient) Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(Empty)
 	err := c.cc.Invoke(ctx, PubSub_Publish_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -74,7 +73,7 @@ func (c *pubSubClient) Publish(ctx context.Context, in *PublishRequest, opts ...
 // for forward compatibility.
 type PubSubServer interface {
 	Subscribe(*SubscribeRequest, grpc.ServerStreamingServer[Event]) error
-	Publish(context.Context, *PublishRequest) (*emptypb.Empty, error)
+	Publish(context.Context, *PublishRequest) (*Empty, error)
 	mustEmbedUnimplementedPubSubServer()
 }
 
@@ -88,7 +87,7 @@ type UnimplementedPubSubServer struct{}
 func (UnimplementedPubSubServer) Subscribe(*SubscribeRequest, grpc.ServerStreamingServer[Event]) error {
 	return status.Errorf(codes.Unimplemented, "method Subscribe not implemented")
 }
-func (UnimplementedPubSubServer) Publish(context.Context, *PublishRequest) (*emptypb.Empty, error) {
+func (UnimplementedPubSubServer) Publish(context.Context, *PublishRequest) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Publish not implemented")
 }
 func (UnimplementedPubSubServer) mustEmbedUnimplementedPubSubServer() {}

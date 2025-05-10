@@ -9,7 +9,6 @@ package api
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -22,6 +21,42 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type Empty struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Empty) Reset() {
+	*x = Empty{}
+	mi := &file_api_pubsub_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Empty) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Empty) ProtoMessage() {}
+
+func (x *Empty) ProtoReflect() protoreflect.Message {
+	mi := &file_api_pubsub_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Empty.ProtoReflect.Descriptor instead.
+func (*Empty) Descriptor() ([]byte, []int) {
+	return file_api_pubsub_proto_rawDescGZIP(), []int{0}
+}
+
 type SubscribeRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Key           string                 `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
@@ -31,7 +66,7 @@ type SubscribeRequest struct {
 
 func (x *SubscribeRequest) Reset() {
 	*x = SubscribeRequest{}
-	mi := &file_api_pubsub_proto_msgTypes[0]
+	mi := &file_api_pubsub_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43,7 +78,7 @@ func (x *SubscribeRequest) String() string {
 func (*SubscribeRequest) ProtoMessage() {}
 
 func (x *SubscribeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_pubsub_proto_msgTypes[0]
+	mi := &file_api_pubsub_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -56,7 +91,7 @@ func (x *SubscribeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubscribeRequest.ProtoReflect.Descriptor instead.
 func (*SubscribeRequest) Descriptor() ([]byte, []int) {
-	return file_api_pubsub_proto_rawDescGZIP(), []int{0}
+	return file_api_pubsub_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *SubscribeRequest) GetKey() string {
@@ -76,7 +111,7 @@ type PublishRequest struct {
 
 func (x *PublishRequest) Reset() {
 	*x = PublishRequest{}
-	mi := &file_api_pubsub_proto_msgTypes[1]
+	mi := &file_api_pubsub_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -88,7 +123,7 @@ func (x *PublishRequest) String() string {
 func (*PublishRequest) ProtoMessage() {}
 
 func (x *PublishRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_pubsub_proto_msgTypes[1]
+	mi := &file_api_pubsub_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -101,7 +136,7 @@ func (x *PublishRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublishRequest.ProtoReflect.Descriptor instead.
 func (*PublishRequest) Descriptor() ([]byte, []int) {
-	return file_api_pubsub_proto_rawDescGZIP(), []int{1}
+	return file_api_pubsub_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *PublishRequest) GetKey() string {
@@ -127,7 +162,7 @@ type Event struct {
 
 func (x *Event) Reset() {
 	*x = Event{}
-	mi := &file_api_pubsub_proto_msgTypes[2]
+	mi := &file_api_pubsub_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -139,7 +174,7 @@ func (x *Event) String() string {
 func (*Event) ProtoMessage() {}
 
 func (x *Event) ProtoReflect() protoreflect.Message {
-	mi := &file_api_pubsub_proto_msgTypes[2]
+	mi := &file_api_pubsub_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -152,7 +187,7 @@ func (x *Event) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Event.ProtoReflect.Descriptor instead.
 func (*Event) Descriptor() ([]byte, []int) {
-	return file_api_pubsub_proto_rawDescGZIP(), []int{2}
+	return file_api_pubsub_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Event) GetData() string {
@@ -166,17 +201,18 @@ var File_api_pubsub_proto protoreflect.FileDescriptor
 
 const file_api_pubsub_proto_rawDesc = "" +
 	"\n" +
-	"\x10api/pubsub.proto\x12\x06pubsub\x1a\x1bgoogle/protobuf/empty.proto\"$\n" +
+	"\x10api/pubsub.proto\x12\x06pubsub\"\a\n" +
+	"\x05Empty\"$\n" +
 	"\x10SubscribeRequest\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\"6\n" +
 	"\x0ePublishRequest\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x12\n" +
 	"\x04data\x18\x02 \x01(\tR\x04data\"\x1b\n" +
 	"\x05Event\x12\x12\n" +
-	"\x04data\x18\x01 \x01(\tR\x04data2{\n" +
+	"\x04data\x18\x01 \x01(\tR\x04data2r\n" +
 	"\x06PubSub\x126\n" +
-	"\tSubscribe\x12\x18.pubsub.SubscribeRequest\x1a\r.pubsub.Event0\x01\x129\n" +
-	"\aPublish\x12\x16.pubsub.PublishRequest\x1a\x16.google.protobuf.EmptyB1Z/github.com/makarmolochaev/subscribe-service/apib\x06proto3"
+	"\tSubscribe\x12\x18.pubsub.SubscribeRequest\x1a\r.pubsub.Event0\x01\x120\n" +
+	"\aPublish\x12\x16.pubsub.PublishRequest\x1a\r.pubsub.EmptyB1Z/github.com/makarmolochaev/subscribe-service/apib\x06proto3"
 
 var (
 	file_api_pubsub_proto_rawDescOnce sync.Once
@@ -190,18 +226,18 @@ func file_api_pubsub_proto_rawDescGZIP() []byte {
 	return file_api_pubsub_proto_rawDescData
 }
 
-var file_api_pubsub_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_api_pubsub_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_api_pubsub_proto_goTypes = []any{
-	(*SubscribeRequest)(nil), // 0: pubsub.SubscribeRequest
-	(*PublishRequest)(nil),   // 1: pubsub.PublishRequest
-	(*Event)(nil),            // 2: pubsub.Event
-	(*emptypb.Empty)(nil),    // 3: google.protobuf.Empty
+	(*Empty)(nil),            // 0: pubsub.Empty
+	(*SubscribeRequest)(nil), // 1: pubsub.SubscribeRequest
+	(*PublishRequest)(nil),   // 2: pubsub.PublishRequest
+	(*Event)(nil),            // 3: pubsub.Event
 }
 var file_api_pubsub_proto_depIdxs = []int32{
-	0, // 0: pubsub.PubSub.Subscribe:input_type -> pubsub.SubscribeRequest
-	1, // 1: pubsub.PubSub.Publish:input_type -> pubsub.PublishRequest
-	2, // 2: pubsub.PubSub.Subscribe:output_type -> pubsub.Event
-	3, // 3: pubsub.PubSub.Publish:output_type -> google.protobuf.Empty
+	1, // 0: pubsub.PubSub.Subscribe:input_type -> pubsub.SubscribeRequest
+	2, // 1: pubsub.PubSub.Publish:input_type -> pubsub.PublishRequest
+	3, // 2: pubsub.PubSub.Subscribe:output_type -> pubsub.Event
+	0, // 3: pubsub.PubSub.Publish:output_type -> pubsub.Empty
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -220,7 +256,7 @@ func file_api_pubsub_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_pubsub_proto_rawDesc), len(file_api_pubsub_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

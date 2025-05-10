@@ -2,15 +2,15 @@ syntax = "proto3";
 
 package pubsub;
 
+
 option go_package = "github.com/makarmolochaev/subscribe-service/api";
-
-import "google/protobuf/empty.proto";
-
 
 service PubSub {
     rpc Subscribe(SubscribeRequest) returns (stream Event);
-    rpc Publish(PublishRequest) returns (google.protobuf.Empty);
+    rpc Publish(PublishRequest) returns (Empty);
 }
+
+message Empty {}
 
 message SubscribeRequest {
     string key = 1;
